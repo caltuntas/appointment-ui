@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModules,
+    NgxMaterialTimepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

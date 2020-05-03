@@ -47,7 +47,32 @@
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
-
+          <div class="col-md-12">
+            <div class="24hr-example">
+              <input
+                matInput
+                placeholder="Appointment Start Time"
+                aria-label="Appointment Start Time"
+                [ngxTimepicker]="startTime"
+                [format]="24"
+                readonly
+              />
+              <ngx-material-timepicker #startTime></ngx-material-timepicker>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="24hr-example">
+              <input
+                matInput
+                placeholder="Appointment End Time"
+                aria-label="Appointment End Time"
+                [ngxTimepicker]="endTime"
+                [format]="24"
+                readonly
+              />
+              <ngx-material-timepicker #endTime></ngx-material-timepicker>
+            </div>
+          </div>
           <div class="col-md-12">
             <button
               mat-raised-button
@@ -56,7 +81,7 @@
               style="margin: 5px;"
               [disabled]="!talepForm.form.valid"
             >
-              Tamamla
+              Save
             </button>
           </div>
         </form>
