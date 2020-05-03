@@ -9,6 +9,7 @@ import { MaterialModules } from './material.module';
 import { HomeComponent } from './home/home.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
+import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AppointmentListComponent } from './appointment-list/appointment-list.co
     HeaderComponent,
     HomeComponent,
     SidenavComponent,
-    AppointmentListComponent
+    AppointmentListComponent,
+    AppointmentFormComponent
   ],
   imports: [
     BrowserModule,

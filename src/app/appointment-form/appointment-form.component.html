@@ -1,0 +1,66 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Appointment Information</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="container">
+      <div [hidden]="submitted">
+        <form (ngSubmit)="onSubmit()" #talepForm="ngForm" class="example-form">
+          <div class="col-md-12">
+            <mat-form-field class="full-width">
+              <mat-label>First Name</mat-label>
+              <input
+                matInput
+                type="text"
+                [(ngModel)]="model.firstName"
+                name="firstName"
+                #name="ngModel"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="full-width">
+              <mat-label>Last Name</mat-label>
+              <input
+                matInput
+                type="text"
+                [(ngModel)]="model.lastName"
+                name="lastName"
+                #name="ngModel"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="full-width">
+              <mat-label>Appointment Date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                [(ngModel)]="model.date"
+                name="date"
+                #name="ngModel"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              style="margin: 5px;"
+              [disabled]="!talepForm.form.valid"
+            >
+              Tamamla
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
