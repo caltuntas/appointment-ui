@@ -2,7 +2,7 @@
   "name": "appointment-ui",
   "version": "0.0.0",
   "scripts": {
-    "start": "http-server",
+    "start": "ng serve",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
