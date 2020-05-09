@@ -15,7 +15,7 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
-        path: 'companies',
+        path: 'appointments',
         loadChildren: () =>
           import('./modules/company/company.module').then(
             (mod) => mod.CompanyModule

@@ -43,11 +43,6 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
     });
   }
 
-  redirectToLicenses(rowObj) {
-    // this.router.navigate(['licenses'], { state: { company: rowObj } });
-    this.router.navigate(['licenses', rowObj._id]);
-  }
-
   openDialog(action, obj) {
     if (action === 'Add') {
       const emptyCompanyData: Appointment = { name: '', phone: '', date: '', startTime: '', endTime: '', description: '' };

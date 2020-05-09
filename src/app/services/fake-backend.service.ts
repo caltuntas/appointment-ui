@@ -4,7 +4,7 @@ export class FakeBackendService implements InMemoryDbService {
   createDb() {
     const appointments = [
       {
-        id: 1,
+        _id: 1,
         name: 'Cihat Altuntaş',
         phone: '05309631254',
         date: '05.04.2020',
@@ -13,7 +13,7 @@ export class FakeBackendService implements InMemoryDbService {
         description: 'Desc',
       },
       {
-        id: 1,
+        _id: 2,
         name: 'Ahmet Mermertaş',
         phone: '05309631254',
         date: '05.07.2020',
