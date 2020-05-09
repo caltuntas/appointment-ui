@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     HttpClientModule,
+    NgxMaterialTimepickerModule,
     InMemoryWebApiModule.forRoot(FakeBackendService)
   ],
   providers: [

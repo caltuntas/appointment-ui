@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Company } from '../../interfaces/company.interfaces';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Appointment } from '../../interfaces/company.interfaces';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-company-form',
@@ -8,13 +8,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./company-form.component.css'],
 })
 export class CompanyFormComponent implements OnInit {
-  companyData: Company;
-  companyForm: FormGroup;
+  appointmentData: Appointment;
+  @ViewChild(NgForm) appointmentForm: NgForm;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.companyForm = this.fb.group(this.companyData);
-    this.companyForm.get('name').setValidators(Validators.required);
   }
 }

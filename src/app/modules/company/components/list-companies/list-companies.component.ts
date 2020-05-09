@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Company } from '../../interfaces/company.interfaces';
+import { Appointment } from '../../interfaces/company.interfaces';
 import { CompanyService } from 'src/app/services/appointment.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -21,8 +21,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-companies.component.css'],
 })
 export class ListCompaniesComponent implements OnInit, OnDestroy {
-  companies: MatTableDataSource<Company>;
-  displayedColumns: string[] = ['name', 'address', 'phone', 'action'];
+  companies: MatTableDataSource<Appointment>;
+  displayedColumns: string[] = ['name', 'phone', 'date', 'startTime', 'endTime', 'description', 'action'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -50,12 +50,12 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
 
   openDialog(action, obj) {
     if (action === 'Add') {
-      const emptyCompanyData: Company = { name: '', address: '', phone: '' };
+      const emptyCompanyData: Appointment = { name: '', phone: '', date: '', startTime: '', endTime: '', description: '' };
       obj = emptyCompanyData;
     }
     obj.action = action;
     obj.component = 'CompanyFormComponent';
-    obj.instance = 'company';
+    obj.instance = 'appointment';
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '250px',
       data: obj,

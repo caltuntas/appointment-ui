@@ -17,6 +17,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [ListCompaniesComponent, CompanyFormComponent],
@@ -36,6 +39,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSnackBarModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    NgxMaterialTimepickerModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ],
 })
 export class CompanyModule {}

@@ -10,7 +10,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Company } from 'src/app/modules/company/interfaces/company.interfaces';
+import { Appointment } from 'src/app/modules/company/interfaces/company.interfaces';
 import { componentsMap } from 'src/environments/environment';
 
 @Component({
@@ -29,7 +29,7 @@ export class DialogBoxComponent implements OnInit, AfterViewInit {
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: Company,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: Appointment,
     private resolver: ComponentFactoryResolver,
     private cd: ChangeDetectorRef
   ) {

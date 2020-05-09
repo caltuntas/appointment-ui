@@ -2,7 +2,6 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { LicenseFormComponent } from 'src/app/modules/license/components/license-form/license-form.component';
 import { CompanyFormComponent } from 'src/app/modules/company/components/company-form/company-form.component';
 
 export const environment = {
@@ -12,7 +11,6 @@ export const environment = {
 export const apiBaseUrl = 'http://localhost:8000/api';
 
 export const componentsMap = {
-  LicenseFormComponent,
   CompanyFormComponent,
 };
 

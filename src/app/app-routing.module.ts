@@ -21,13 +21,6 @@ const routes: Routes = [
             (mod) => mod.CompanyModule
           ),
       },
-      {
-        path: 'licenses',
-        loadChildren: () =>
-          import('./modules/license/license.module').then(
-            (mod) => mod.LicenseModule
-          ),
-      },
     ],
   },
   {

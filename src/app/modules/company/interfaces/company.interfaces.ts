@@ -1,9 +1,9 @@
-import { License } from '../../license/interfaces/license.interfaces';
-
-export interface Company {
+export interface Appointment {
   _id?: string;
   name: string;
-  address?: string;
   phone?: string;
-  licenses?: Array<License>;
+  date: string;
+  startTime: string;
+  endTime: string;
+  description: string;
 }
