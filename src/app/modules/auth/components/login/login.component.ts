@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         console.log(res);
         this.auth.setToken(res.token);
         this.setCurrentUser(res);
-        this.router.navigate(['/companies']);
+        this.router.navigate(['/appointments']);
       },
       (err) => {
         if (err.error === 'invalid username') {

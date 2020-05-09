@@ -6,11 +6,27 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserService {
-  getUsersUrl = `${apiBaseUrl}/users/`;
+  usersEndpoint = 'users';
+  apiUrl = apiBaseUrl + '/' + this.usersEndpoint;
 
   constructor(private http: HttpClient) {}
 
   getUsers() {
-    return this.http.get<any>(this.getUsersUrl);
+    return this.http.get<any>(this.apiUrl);
+  }
+
+  deleteUser(id) {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+
+  createUser(userData) {
+    return this.http.post<any>(this.apiUrl, userData);
+  }
+
+  updateUser(userData) {
+    return this.http.put<any>(
+      this.apiUrl,
+      userData,
+    );
   }
 }

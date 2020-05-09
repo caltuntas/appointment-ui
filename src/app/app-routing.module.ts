@@ -21,6 +21,13 @@ const routes: Routes = [
             (mod) => mod.CompanyModule
           ),
       },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./modules/settings/settings.module').then(
+            (mod) => mod.SettingsModule
+          ),
+      }
     ],
   },
   {
@@ -30,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/companies',
+    redirectTo: '/appointments',
     pathMatch: 'full',
   },
 ];

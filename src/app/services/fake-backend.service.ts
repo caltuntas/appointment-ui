@@ -22,9 +22,26 @@ export class FakeBackendService implements InMemoryDbService {
         description: 'Desc',
       }
     ];
+    const users = [
+      {
+        _id: 1,
+        name: 'Cihat Altuntaş',
+        username: 'caltuntas',
+        password: '123456',
+        role: 'admin',
+      },
+      {
+        _id: 2,
+        name: 'Ahmet Mermertaş',
+        username: 'ahmet',
+        password: 'pass',
+        role: 'hairdresser',
+      },
+    ];
 
     return {
-      appointments
+      appointments,
+      users,
     };
   }
 }
