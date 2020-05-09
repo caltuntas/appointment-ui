@@ -1,0 +1,17 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title><strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+    <template #dynamicForm *ngIf="action !== 'Delete'; else elseTemplate">
+    </template>
+    <ng-template #elseTemplate>
+        Sure to delete <b>{{localData.name}}</b>?
+    </ng-template>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="doAction()" *ngIf="action === 'Delete'; else otherActions">{{action}}</button>
+    <ng-template #otherActions>
+        <button mat-button (click)="doAction()" *ngIf="componentRef?.instance"
+            [disabled]="isFormValid()">{{action}}</button>
+    </ng-template>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

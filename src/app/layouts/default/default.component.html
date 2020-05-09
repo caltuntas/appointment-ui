@@ -1,0 +1,13 @@
+<app-header (toggleSideBarForMe)="sideBarToggler($event)" [menuIcon]="headerMenuIcon"></app-header>
+
+<mat-drawer-container id="container">
+    <mat-drawer mode="side" id="sidenav" [class.menu-open]="sideBarOpen" [class.menu-close]="!sideBarOpen" opened>
+        <app-sidebar></app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content id="content" [ngStyle]="{'margin-left.px': contentMargin}">
+        <ngx-spinner [name]="contentSpinner" [fullScreen]="false"></ngx-spinner>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+<app-footer></app-footer>

@@ -4,31 +4,30 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
-import { MaterialModules } from './material.module';
-import { HomeComponent } from './home/home.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
-import { AppointmentListComponent } from './appointment-list/appointment-list.component';
-import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { DefaultModule } from './layouts/default/default.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './guards/auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomeComponent,
-    SidenavComponent,
-    AppointmentListComponent,
-    AppointmentFormComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    DefaultModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModules,
-    NgxMaterialTimepickerModule,
+    NgxSpinnerModule,
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

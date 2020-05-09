@@ -1,0 +1,28 @@
+<form [formGroup]="licenseForm">
+    <mat-form-field>
+        <input placeholder="Company" matInput formControlName="companyName">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input placeholder="License Number" matInput formControlName="licenseNumber">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Choose start date</mat-label>
+        <input matInput [matDatepicker]="startDatePicker" formControlName="startDate"
+            (dateChange)="startDateChanged('change', $event)">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #startDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Choose end date</mat-label>
+        <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" [matDatepickerFilter]="endDateFilter">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #endDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input placeholder="Device count" matInput formControlName="deviceCount">
+    </mat-form-field>
+</form>

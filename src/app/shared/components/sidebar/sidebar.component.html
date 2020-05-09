@@ -1,0 +1,28 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <div class="user-photo">
+            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Secard Admin">
+        </div>
+        <div class="user-info">
+            <h3>{{currentUser?.fullName}}</h3>
+            <h4>{{currentUser?.email}}</h4>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="pages-list">
+
+        <!-- <h2 matSubheader>Pages</h2> -->
+
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            Dashboard
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/companies">
+            <mat-icon>business</mat-icon>
+            Companies
+        </a>
+    </div>
+
+</mat-nav-list>

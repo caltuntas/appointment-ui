@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#sidenav {
+  width: 240px;
+}
+
+#sidenav.menu-open {
+  width: 240px;
+}
+
+#sidenav.menu-close {
+  width: 70px;
+}
+
+#container {
+  height: 100%;
+}
+
+#content {
+  padding: 20px;
+}

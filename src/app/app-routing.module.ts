@@ -1,29 +1,49 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AppointmentListComponent } from './appointment-list/appointment-list.component';
-import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
-
+import { DefaultComponent } from './layouts/default/default.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: DefaultComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: 'appointments',
-        component: AppointmentListComponent
+        path: 'dashboard',
+        component: DashboardComponent,
       },
       {
-        path: 'appointments/new',
-        component: AppointmentFormComponent
-      }
+        path: 'companies',
+        loadChildren: () =>
+          import('./modules/company/company.module').then(
+            (mod) => mod.CompanyModule
+          ),
+      },
+      {
+        path: 'licenses',
+        loadChildren: () =>
+          import('./modules/license/license.module').then(
+            (mod) => mod.LicenseModule
+          ),
+      },
     ],
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((mod) => mod.AuthModule),
+  },
+  {
+    path: '**',
+    redirectTo: '/companies',
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
