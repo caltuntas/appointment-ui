@@ -67,11 +67,12 @@ export class DialogBoxComponent implements OnInit, AfterViewInit {
 
   doAction() {
     if (this.action === 'Add' || this.action === 'Update') {
-      this.dialogRef.close({
+       const instance =  this.componentRef.instance;
+       const form = instance[`${this.localData.instance}Form`];
+       const data = form.form.getRawValue();
+       this.dialogRef.close({
         event: this.action,
-        data: this.componentRef.instance[
-          `${this.localData.instance}Form`
-        ].getRawValue(),
+        data
       });
     } else {
       this.dialogRef.close({ event: this.action, data: this.localData });

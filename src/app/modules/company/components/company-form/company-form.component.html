@@ -1,10 +1,10 @@
 <form #appointmentForm="ngForm">
   <mat-form-field>
-    <input placeholder="Name" matInput name="name" >
+    <input placeholder="Name" matInput name="name" ngModel>
   </mat-form-field>
 
   <mat-form-field>
-    <input placeholder="Phone" matInput >
+    <input placeholder="Phone" matInput name="phone" ngModel>
   </mat-form-field>
 
   <mat-form-field>
@@ -13,6 +13,7 @@
       placeholder="Date"
       [matDatepicker]="picker"
       name="date"
+      ngModel
     />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
@@ -21,11 +22,34 @@
   <mat-form-field>
     <input
       matInput
-      placeholder="Appointment End Time"
-      aria-label="Appointment End Time"
+      placeholder="Start Time"
+      aria-label="Start Time"
+      [ngxTimepicker]="startTime"
+      [format]="24"
+      name="startTime"
+      ngModel
+    />
+    <ngx-material-timepicker #startTime></ngx-material-timepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="End Time"
+      aria-label="End Time"
       [ngxTimepicker]="endTime"
       [format]="24"
+      name="endTime"
+      ngModel
     />
     <ngx-material-timepicker #endTime></ngx-material-timepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      name="description"
+      ngModel
+    ></textarea>
   </mat-form-field>
 </form>
