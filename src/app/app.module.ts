@@ -1,3 +1,4 @@
+import { FakeBackendService } from './services/fake-backend.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,6 +10,7 @@ import { DefaultModule } from './layouts/default/default.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +21,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     HttpClientModule,
+    InMemoryWebApiModule.forRoot(FakeBackendService)
   ],
   providers: [
     AuthGuard,

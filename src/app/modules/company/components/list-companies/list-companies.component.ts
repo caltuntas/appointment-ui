@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Company } from '../../interfaces/company.interfaces';
-import { CompanyService } from 'src/app/services/company.service';
+import { CompanyService } from 'src/app/services/appointment.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
@@ -36,7 +36,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.spinner.show('contentSpinner');
-    this.companyService.getCompanies().subscribe((companies) => {
+    this.companyService.getAppointments().subscribe((companies) => {
       this.companies = new MatTableDataSource(companies);
       this.companies.paginator = this.paginator;
       this.spinner.hide('contentSpinner');
@@ -76,7 +76,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
 
   addRowData(rowObj) {
     delete rowObj.action;
-    this.companyService.createCompany(rowObj).subscribe(
+    this.companyService.createAppointment(rowObj).subscribe(
       (createdCompany) => {
         this.addRowToDS(createdCompany);
         this.snackBar.open(`Successfully created`, `${rowObj.name}`, {
@@ -96,7 +96,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
   }
 
   updateRowData(rowObj) {
-    this.companyService.updateCompany(rowObj).subscribe(
+    this.companyService.updateAppointment(rowObj).subscribe(
       (data) => {
         this.updateRowOnDS(rowObj);
         this.snackBar.open(`Successfully updated`, `${rowObj.name}`, {
@@ -120,7 +120,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
   }
 
   deleteRowData(rowObj) {
-    this.companyService.deleteCompany(rowObj._id).subscribe(
+    this.companyService.deleteAppointment(rowObj._id).subscribe(
       (data) => {
         this.deleteRowFromDS(rowObj._id);
         this.snackBar.open(`Successfully deleted`, `${rowObj.name}`, {

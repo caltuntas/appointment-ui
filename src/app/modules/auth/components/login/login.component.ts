@@ -22,30 +22,6 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group(loginUser);
     this.loginForm.get('username').setValidators(Validators.required);
     this.loginForm.get('password').setValidators(Validators.required);
-    // this.loginForm = this.fb.group({
-    //   username: ['', Validators.required],
-    //   password: [
-    //     '',
-    //     [
-    //       Validators.required,
-    //       // Validators.minLength(6),
-    //       // Validators.pattern(
-    //       //   '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}',
-    //       // ),
-    //     ],
-    //   ],
-    //   // email: [
-    //   //   '',
-    //   //   [
-    //   //     Validators.required,
-    //   //     Validators.pattern(
-    //   //       /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.
-    //   //         [-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?
-    //   //         (\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/,
-    //   //     ),
-    //   //   ],
-    //   // ],
-    // });
   }
 
   setCurrentUser(res) {
@@ -59,6 +35,7 @@ export class LoginComponent implements OnInit {
   loginUser() {
     this.auth.loginUser(this.loginForm.value).subscribe(
       (res) => {
+        console.log(res);
         this.auth.setToken(res.token);
         this.setCurrentUser(res);
         this.router.navigate(['/companies']);
@@ -80,8 +57,4 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.loginForm.get('password');
   }
-
-  // get email() {
-  //   return this.loginForm.get('email');
-  // }
 }
