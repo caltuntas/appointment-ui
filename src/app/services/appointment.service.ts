@@ -24,9 +24,6 @@ export class AppointmentService {
   }
 
   updateAppointment(appointmentData) {
-    return this.http.put<any>(
-      this.apiUrl,
-      appointmentData,
-    );
+    return this.http.put<any>(this.apiUrl, appointmentData);
   }
 }

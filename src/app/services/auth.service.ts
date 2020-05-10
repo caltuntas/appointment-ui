@@ -16,6 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   loginUser(user: LoginUser) {
+    /*
     const observable = new Observable<any>(observer => {
       setTimeout(() => {
         const usr = {
@@ -28,12 +29,11 @@ export class AuthService {
         console.log('am done');
         observer.complete();
       }, 1000);
-
     });
-
     return observable;
+    */
 
-    // return this.http.post<any>(this.loginUrl, user);
+    return this.http.post<any>(this.loginUrl, user);
   }
 
   logoutUser() {

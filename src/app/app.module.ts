@@ -10,7 +10,7 @@ import { DefaultModule } from './layouts/default/default.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     NgxSpinnerModule,
     HttpClientModule,
     NgxMaterialTimepickerModule,
-    InMemoryWebApiModule.forRoot(FakeBackendService)
+    // InMemoryWebApiModule.forRoot(FakeBackendService)
   ],
   providers: [
     AuthGuard,

@@ -9,7 +9,8 @@ export const environment = {
   production: false,
 };
 
-export const apiBaseUrl = 'http://localhost:8000/api';
+// export const apiBaseUrl = 'http://localhost:8000/api';
+export const apiBaseUrl = 'https://appointment-service.herokuapp.com/api';
 
 export const componentsMap = {
   CompanyFormComponent,
