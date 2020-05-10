@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class CompanyService {
+export class AppointmentService {
   appointmentsEndpoint = 'appointments';
   apiUrl = apiBaseUrl + '/' + this.appointmentsEndpoint;
 
@@ -19,14 +19,14 @@ export class CompanyService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
-  createAppointment(companyData) {
-    return this.http.post<any>(this.apiUrl, companyData);
+  createAppointment(appointmentData) {
+    return this.http.post<any>(this.apiUrl, appointmentData);
   }
 
-  updateAppointment(companyData) {
+  updateAppointment(appointmentData) {
     return this.http.put<any>(
       this.apiUrl,
-      companyData,
+      appointmentData,
     );
   }
 }

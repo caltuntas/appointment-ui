@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Appointment } from '../../interfaces/company.interfaces';
-import { CompanyService } from 'src/app/services/appointment.service';
+import { AppointmentService } from 'src/app/services/appointment.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
@@ -28,7 +28,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
 
   constructor(
     private spinner: NgxSpinnerService,
-    private companyService: CompanyService,
+    private companyService: AppointmentService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router
