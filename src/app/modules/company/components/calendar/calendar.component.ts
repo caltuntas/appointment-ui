@@ -28,12 +28,12 @@ const colors: any = {
 };
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrls: ['calendar.component.css'],
+  templateUrl: 'calendar.component.html',
 })
-export class DashboardComponent {
+export class CalendarComponent {
   view: CalendarView = CalendarView.Month;
 
   viewDate: Date = new Date();

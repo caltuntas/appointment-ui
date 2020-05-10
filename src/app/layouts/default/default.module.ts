@@ -1,3 +1,4 @@
+import { CalendarUtilsModule } from './../../modules/calendar-utils/module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -8,6 +9,9 @@ import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.componen
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [DefaultComponent, DashboardComponent],
@@ -17,6 +21,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     NgxSpinnerModule,
     SharedModule,
     MatSidenavModule,
+    CalendarUtilsModule,
+    MatButtonToggleModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
 })
 export class DefaultModule {}
