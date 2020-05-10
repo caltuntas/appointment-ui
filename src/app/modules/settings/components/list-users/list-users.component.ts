@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
 })
 export class ListUsersComponent implements OnInit, OnDestroy {
   companies: MatTableDataSource<User>;
-  displayedColumns: string[] = ['name', 'username', 'password', 'role', 'action'];
+  displayedColumns: string[] = ['fullName', 'username', 'password', 'role', 'action'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -45,7 +45,7 @@ export class ListUsersComponent implements OnInit, OnDestroy {
 
   openDialog(action, obj) {
     if (action === 'Add') {
-      const emptyCompanyData: User = { name: '', username: '', password: '', role: ''};
+      const emptyCompanyData: User = { fullName: '', username: '', password: '', role: ''};
       obj = emptyCompanyData;
     }
     obj.action = action;
