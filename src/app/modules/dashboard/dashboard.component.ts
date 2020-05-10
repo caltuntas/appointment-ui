@@ -1,16 +1,17 @@
+import { AppointmentService } from 'src/app/services/appointment.service';
 import {
   Component,
   ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
+  OnInit,
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import { setHours, setMinutes } from 'date-fns';
 import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
+import { Subject } from 'rxjs';
 
 const colors: any = {
   red: {
@@ -33,12 +34,40 @@ const colors: any = {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
 
   viewDate: Date = new Date();
 
   events: CalendarEvent[] = [];
+  refresh: Subject<any> = new Subject();
+
+  constructor(
+    private appointmentService: AppointmentService,
+  ) {}
+
+  ngOnInit(): void {
+    this.appointmentService.getAppointments().subscribe((results) => {
+      results.forEach(result => {
+        const startDate = new Date(result.date);
+        const endDate = new Date(result.date);
+        const [startHours, startMinutes] = result.startTime.split(':');
+        const [endHours, endMinutes] = result.endTime.split(':');
+        startDate.setHours(startHours);
+        startDate.setMinutes(startMinutes);
+        endDate.setHours(endHours);
+        endDate.setMinutes(endMinutes);
+        const e =  {
+          title: result.name,
+          start: startDate,
+          end: endDate,
+        } as CalendarEvent;
+        this.events.push(e);
+      });
+      this.refresh.next();
+    });
+    console.log(this.events);
+  }
 
   changeDay(date: Date) {
     this.viewDate = date;

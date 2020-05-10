@@ -18,6 +18,7 @@
     *ngSwitchCase="'month'"
     [viewDate]="viewDate"
     [events]="events"
+    [refresh]="refresh"
     (dayClicked)="changeDay($event.day.date)"
   >
   </mwl-calendar-month-view>
@@ -25,12 +26,14 @@
     *ngSwitchCase="'week'"
     [viewDate]="viewDate"
     [events]="events"
+    [refresh]="refresh"
     (dayHeaderClicked)="changeDay($event.day.date)"
   >
   </mwl-calendar-week-view>
   <mwl-calendar-day-view
     *ngSwitchCase="'day'"
     [viewDate]="viewDate"
+    [refresh]="refresh"
     [events]="events"
   >
   </mwl-calendar-day-view>
