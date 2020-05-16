@@ -28,7 +28,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
 
   constructor(
     private spinner: NgxSpinnerService,
-    private companyService: AppointmentService,
+    private appointmentService: AppointmentService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router
@@ -36,7 +36,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.spinner.show('contentSpinner');
-    this.companyService.getAppointments().subscribe((companies) => {
+    this.appointmentService.getAppointments().subscribe((companies) => {
       this.companies = new MatTableDataSource(companies);
       this.companies.paginator = this.paginator;
       this.spinner.hide('contentSpinner');
@@ -71,7 +71,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
 
   addRowData(rowObj) {
     delete rowObj.action;
-    this.companyService.createAppointment(rowObj).subscribe(
+    this.appointmentService.createAppointment(rowObj).subscribe(
       (createdCompany) => {
         this.addRowToDS(createdCompany);
         this.snackBar.open(`Successfully created`, `${rowObj.name}`, {
@@ -91,7 +91,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
   }
 
   updateRowData(rowObj) {
-    this.companyService.updateAppointment(rowObj).subscribe(
+    this.appointmentService.updateAppointment(rowObj).subscribe(
       (data) => {
         this.updateRowOnDS(rowObj);
         this.snackBar.open(`Successfully updated`, `${rowObj.name}`, {
@@ -115,7 +115,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
   }
 
   deleteRowData(rowObj) {
-    this.companyService.deleteAppointment(rowObj._id).subscribe(
+    this.appointmentService.deleteAppointment(rowObj._id).subscribe(
       (data) => {
         this.deleteRowFromDS(rowObj._id);
         this.snackBar.open(`Successfully deleted`, `${rowObj.name}`, {
