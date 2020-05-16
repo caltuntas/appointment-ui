@@ -1,3 +1,4 @@
+import { DayViewSchedulerComponent } from 'src/app/modules/scheduler/day-view-scheduler.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarUtilsModule } from './../../modules/calendar-utils/module';
 import { NgModule } from '@angular/core';
@@ -15,9 +16,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { SchedulerComponent } from 'src/app/modules/scheduler/scheduler.component';
 
 @NgModule({
-  declarations: [DefaultComponent, DashboardComponent],
+  declarations: [DefaultComponent, DashboardComponent, SchedulerComponent, DayViewSchedulerComponent],
   imports: [
     CommonModule,
     RouterModule,
