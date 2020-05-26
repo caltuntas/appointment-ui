@@ -63,11 +63,11 @@
     ></textarea>
   </mat-form-field>
   <mat-form-field>
-    <input
-      placeholder="Operator"
-      matInput
-      name="operator"
-      [(ngModel)]="appointmentData.operator"
-    />
+    <mat-label>Operator</mat-label>
+    <mat-select name="operator" [(ngModel)]="appointmentData.operator">
+      <mat-option *ngFor="let user of users" [value]="user._id">
+        {{user.fullName}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 </form>

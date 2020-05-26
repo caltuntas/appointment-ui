@@ -174,11 +174,11 @@ export class DayViewSchedulerComponent extends CalendarWeekViewComponent
       absolutePositionedEvents: true,
       hourSegments: this.hourSegments,
       dayStart: {
-        hour: this.dayStartHour,
+        hour: 7,
         minute: this.dayStartMinute,
       },
       dayEnd: {
-        hour: this.dayEndHour,
+        hour: 20,
         minute: this.dayEndMinute,
       },
       segmentHeight: this.hourSegmentHeight,

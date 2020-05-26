@@ -1,3 +1,4 @@
+import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -44,6 +45,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     MatTooltipModule,
     NgxMaterialTimepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
     MatDatepickerModule,
     CalendarModule.forRoot({
       provide: DateAdapter,

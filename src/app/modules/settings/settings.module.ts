@@ -1,3 +1,4 @@
+import { MatSelectModule } from '@angular/material/select';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -35,6 +36,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatDialogModule,
     FormsModule,
     MatSnackBarModule,
+    MatSelectModule,
     ReactiveFormsModule,
     MatTooltipModule,
     NgxMaterialTimepickerModule,

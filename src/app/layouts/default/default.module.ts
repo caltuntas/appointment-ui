@@ -1,3 +1,4 @@
+import { MatSelectModule } from '@angular/material/select';
 import { DayViewSchedulerComponent } from 'src/app/modules/scheduler/day-view-scheduler.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarUtilsModule } from './../../modules/calendar-utils/module';
@@ -31,6 +32,7 @@ import { SchedulerComponent } from 'src/app/modules/scheduler/scheduler.componen
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
+    MatSelectModule,
     MatDatepickerModule,
     CalendarModule.forRoot({
       provide: DateAdapter,

@@ -1,17 +1,21 @@
 <form #userForm="ngForm">
   <mat-form-field>
-    <input placeholder="Name" matInput name="fullName" ngModel>
+    <input placeholder="Name" matInput name="fullName" ngModel required>
   </mat-form-field>
 
   <mat-form-field>
-    <input placeholder="Username" matInput name="username" ngModel>
+    <input placeholder="Username" matInput name="username" ngModel required>
   </mat-form-field>
 
   <mat-form-field>
-    <input placeholder="Password" matInput name="password" ngModel>
+    <input placeholder="Password" matInput name="password" ngModel required>
   </mat-form-field>
 
   <mat-form-field>
-    <input placeholder="Role" matInput name="role" ngModel>
+    <mat-label>Role</mat-label>
+    <mat-select name="role" ngModel required>
+      <mat-option value="Admin">Admin</mat-option>
+      <mat-option value="Normal">Normal</mat-option>
+    </mat-select>
   </mat-form-field>
 </form>

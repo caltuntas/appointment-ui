@@ -45,7 +45,7 @@ export class ListCompaniesComponent implements OnInit, OnDestroy {
 
   openDialog(action, obj) {
     if (action === 'Add') {
-      const emptyCompanyData: Appointment = { name: '', phone: '', date: '', startTime: '', endTime: '', description: '' };
+      const emptyCompanyData: Appointment = { name: '', phone: '', date: '', startTime: '', endTime: '', description: '', operator: '' };
       obj = emptyCompanyData;
     }
     obj.action = action;

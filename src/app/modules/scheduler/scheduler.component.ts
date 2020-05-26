@@ -4,6 +4,7 @@ import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@
 import {
   CalendarEvent,
   CalendarEventTimesChangedEvent,
+  CalendarWeekViewBeforeRenderEvent,
 } from 'angular-calendar';
 import { addHours, startOfDay } from 'date-fns';
 import { User } from './day-view-scheduler.component';
