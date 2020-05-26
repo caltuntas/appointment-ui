@@ -6,4 +6,5 @@ export interface Appointment {
   startTime: string;
   endTime: string;
   description: string;
+  operator: string;
 }

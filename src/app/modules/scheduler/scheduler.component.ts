@@ -1,3 +1,4 @@
+import { AppointmentService } from './../../services/appointment.service';
 import { UserService } from './../../services/user.service';
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import {
@@ -22,18 +23,6 @@ const colors: any = {
   },
 };
 
-let users: User[] = [
-  {
-    id: 0,
-    name: 'John smith',
-    color: colors.yellow,
-  },
-  {
-    id: 1,
-    name: 'Jane Doe',
-    color: colors.blue,
-  },
-];
 
 @Component({
   selector: 'app-scheduler',
@@ -44,85 +33,16 @@ let users: User[] = [
 export class SchedulerComponent implements OnInit {
   constructor(
     private userService: UserService,
+    private appointmentService: AppointmentService,
     private changeDetector: ChangeDetectorRef,
   ){
 
   }
   viewDate = new Date();
 
-  users = users;
+  users: User[];
 
-  events: CalendarEvent[] = [
-    {
-      title: 'An event',
-      color: users[0].color,
-      start: addHours(startOfDay(new Date()), 5),
-      meta: {
-        user: users[0],
-      },
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      title: 'Another event',
-      color: users[1].color,
-      start: addHours(startOfDay(new Date()), 2),
-      meta: {
-        user: users[1],
-      },
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      title: 'A 3rd event',
-      color: users[0].color,
-      start: addHours(startOfDay(new Date()), 7),
-      meta: {
-        user: users[0],
-      },
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      title: 'An all day event',
-      color: users[0].color,
-      start: new Date(),
-      meta: {
-        user: users[0],
-      },
-      draggable: true,
-      allDay: true,
-    },
-    {
-      title: 'Another all day event',
-      color: users[1].color,
-      start: new Date(),
-      meta: {
-        user: users[1],
-      },
-      draggable: true,
-      allDay: true,
-    },
-    {
-      title: 'A 3rd all day event',
-      color: users[0].color,
-      start: new Date(),
-      meta: {
-        user: users[0],
-      },
-      draggable: true,
-      allDay: true,
-    },
-  ];
+  events: CalendarEvent[];
 
   eventTimesChanged({
     event,
@@ -146,6 +66,7 @@ export class SchedulerComponent implements OnInit {
 
   loadUsers() {
     this.userService.getUsers().subscribe((results) => {
+      this.users = [];
       results.forEach(result => {
         const u: User = {
           id : result._id,
@@ -154,8 +75,32 @@ export class SchedulerComponent implements OnInit {
         };
         this.users.push(u);
       });
+      this.events = [];
+      this.appointmentService.getAppointments().subscribe((appointments) => {
+        appointments.forEach(result => {
+          const startDate = new Date(result.date);
+          const endDate = new Date(result.date);
+          const [startHours, startMinutes] = result.startTime.split(':');
+          const [endHours, endMinutes] = result.endTime.split(':');
+          startDate.setHours(startHours);
+          startDate.setMinutes(startMinutes);
+          endDate.setHours(endHours);
+          endDate.setMinutes(endMinutes);
+          const e = {
+            title: result.name,
+            start: startDate,
+            end: endDate,
+            color: colors.red,
+            meta: {
+              user: this.users[0],
+            },
+            draggable: true,
+            allDay: false,
+          } as CalendarEvent;
+          this.events.push(e);
+        });
+      });
       this.changeDetector.detectChanges();
     });
-    console.log(this.events);
   }
 }

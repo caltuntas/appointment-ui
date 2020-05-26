@@ -32,7 +32,7 @@
 </div>
 <br />
 
-<mwl-day-view-scheduler
+<mwl-day-view-scheduler *ngIf="users && events"
   [viewDate]="viewDate"
   [events]="events"
   [users]="users"

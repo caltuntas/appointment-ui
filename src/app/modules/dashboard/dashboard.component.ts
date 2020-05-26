@@ -172,7 +172,8 @@ export class DashboardComponent implements OnInit {
         date: obj.start,
         startTime,
         endTime,
-        description: ''
+        description: '',
+        operator: '',
       };
       obj = emptyAppointment;
     }
