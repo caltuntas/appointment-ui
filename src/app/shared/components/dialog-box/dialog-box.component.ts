@@ -11,7 +11,13 @@ import {
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Appointment } from 'src/app/modules/company/interfaces/company.interfaces';
-import { componentsMap } from 'src/environments/environment';
+import { CompanyFormComponent } from 'src/app/modules/company/components/company-form/company-form.component';
+import { UserFormComponent } from 'src/app/modules/settings/components/user-form/user-form.component';
+
+export const componentsMap = {
+  CompanyFormComponent,
+  UserFormComponent,
+};
 
 @Component({
   selector: 'app-dialog-box',

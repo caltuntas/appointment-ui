@@ -21,12 +21,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
-  declarations: [ListCompaniesComponent, CompanyFormComponent, CalendarComponent],
+  declarations: [ListCompaniesComponent, CompanyFormComponent ],
   imports: [
     CommonModule,
     CompanyRoutingModule,

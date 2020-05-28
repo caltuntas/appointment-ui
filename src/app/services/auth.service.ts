@@ -1,38 +1,19 @@
 import { Injectable } from '@angular/core';
-import { apiBaseUrl } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginUser } from '../modules/auth/interfaces/auth.interfaces';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  loginUrl = `${apiBaseUrl}/users/login`;
+  loginUrl = `${environment.apiBaseUrl}/users/login`;
   userDetails;
 
   constructor(private http: HttpClient, private router: Router) { }
 
   loginUser(user: LoginUser) {
-    /*
-    const observable = new Observable<any>(observer => {
-      setTimeout(() => {
-        const usr = {
-          fullName: 'Cihat',
-          email: 'aaaqbbb.com',
-          token: 'aaaaaaa'
-        };
-
-        observer.next(usr);
-        console.log('am done');
-        observer.complete();
-      }, 1000);
-    });
-    return observable;
-    */
-
     return this.http.post<any>(this.loginUrl, user);
   }
 

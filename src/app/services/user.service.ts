@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { apiBaseUrl } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   usersEndpoint = 'users';
-  apiUrl = apiBaseUrl + '/' + this.usersEndpoint;
+  apiUrl = environment.apiBaseUrl + '/' + this.usersEndpoint;
 
   constructor(private http: HttpClient) {}
 
