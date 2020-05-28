@@ -51,6 +51,10 @@
     (dayHeaderClicked)="changeDay($event.day.date)"
     [hourSegmentTemplate]="weekViewHourSegmentTemplate"
     (eventClicked)="eventClicked($event)"
+    [dayStartHour]="'7'"
+    [dayStartMinute]="'0'"
+    [dayEndHour]="'20'"
+    [dayEndMinute]="'0'"
   >
   </mwl-calendar-week-view>
   <mwl-calendar-day-view
@@ -58,6 +62,10 @@
     [viewDate]="viewDate"
     [refresh]="refreshEvent"
     [events]="events"
+    [dayStartHour]="'7'"
+    [dayStartMinute]="'0'"
+    [dayEndHour]="'20'"
+    [dayEndMinute]="'0'"
   >
   </mwl-calendar-day-view>
 </div>

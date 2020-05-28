@@ -79,26 +79,29 @@ export class SchedulerComponent implements OnInit {
       this.events = [];
       this.appointmentService.getAppointments().subscribe((appointments) => {
         appointments.forEach(result => {
-          const startDate = new Date(result.date);
-          const endDate = new Date(result.date);
-          const [startHours, startMinutes] = result.startTime.split(':');
-          const [endHours, endMinutes] = result.endTime.split(':');
-          startDate.setHours(startHours);
-          startDate.setMinutes(startMinutes);
-          endDate.setHours(endHours);
-          endDate.setMinutes(endMinutes);
-          const e = {
-            title: result.name,
-            start: startDate,
-            end: endDate,
-            color: colors.red,
-            meta: {
-              user: this.users[0],
-            },
-            draggable: true,
-            allDay: false,
-          } as CalendarEvent;
-          this.events.push(e);
+          if (result.operator) {
+            const startDate = new Date(result.date);
+            const endDate = new Date(result.date);
+            const [startHours, startMinutes] = result.startTime.split(':');
+            const [endHours, endMinutes] = result.endTime.split(':');
+            startDate.setHours(startHours);
+            startDate.setMinutes(startMinutes);
+            endDate.setHours(endHours);
+            endDate.setMinutes(endMinutes);
+            const operator = this.users.filter(u => u.id === result.operator);
+            const e = {
+              title: result.name,
+              start: startDate,
+              end: endDate,
+              color: colors.red,
+              meta: {
+                user: operator[0],
+              },
+              draggable: true,
+              allDay: false,
+            } as CalendarEvent;
+            this.events.push(e);
+          }
         });
       });
       this.changeDetector.detectChanges();

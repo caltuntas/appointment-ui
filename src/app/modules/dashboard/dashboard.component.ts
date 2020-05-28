@@ -164,8 +164,15 @@ export class DashboardComponent implements OnInit {
 
   openDialog(action, obj) {
     if (action === 'Add') {
-      const startTime = obj.start.getHours() + ':' + obj.start.getMinutes();
-      const endTime = obj.end.getHours() + ':' + obj.end.getMinutes();
+      const startHours = obj.start.getHours();
+      const startMinutes = obj.start.getMinutes();
+      const startTime = startHours + ':' + startMinutes;
+      let endTime;
+      if (obj.end) {
+        endTime = obj.end.getHours() + ':' + obj.end.getMinutes();
+      }else {
+        endTime = startHours + ':' + (startMinutes + 30);
+      }
       const emptyAppointment: Appointment = {
         name: obj.title || '',
         phone: '',
