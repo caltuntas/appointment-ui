@@ -52,7 +52,7 @@ export class DayViewSchedulerCalendarUtils extends CalendarUtils {
 
     view.users.forEach((user, columnIndex) => {
       const events = args.events.filter(
-        (event) => event.meta.user.id === user.id
+        (event) => event.meta.user && event.meta.user.id === user.id
       );
       const columnView = super.getWeekView({
         ...args,
@@ -111,6 +111,14 @@ export class DayViewSchedulerComponent extends CalendarWeekViewComponent
 
   getDayColumnWidth(eventRowContainer: HTMLElement): number {
     return Math.floor(eventRowContainer.offsetWidth / this.users.length);
+  }
+
+  onHourSegmentClick($event, segment) {
+              this.hourSegmentClicked.emit({
+                date: segment.date,
+                sourceEvent: $event
+              });
+
   }
 
   dragMove(dayEvent: WeekViewTimeEvent, dragEvent: DragMoveEvent) {

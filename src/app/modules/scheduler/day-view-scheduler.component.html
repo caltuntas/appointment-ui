@@ -228,13 +228,8 @@
             [segmentHeight]="hourSegmentHeight"
             [locale]="locale"
             [customTemplate]="hourSegmentTemplate"
-            (mwlClick)="
-              hourSegmentClicked.emit({
-                date: segment.date,
-                sourceEvent: $event
-              })
+            (mwlClick)="onHourSegmentClick($event,segment)
             "
-            [clickListenerDisabled]="hourSegmentClicked.observers.length === 0"
             mwlDroppable
             [dragOverClass]="
               !dragActive || !snapDraggedEvents ? 'cal-drag-over' : null

@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { DialogBoxComponent } from 'src/app/shared/components/dialog-box/dialog-box.component';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import {
@@ -23,6 +24,7 @@ import {
 import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Appointment } from '../company/interfaces/company.interfaces';
+import { User } from '../scheduler/day-view-scheduler.component';
 
 function floorToNearest(amount: number, precision: number) {
   return Math.floor(amount / precision) * precision;
@@ -55,6 +57,7 @@ const colors: any = {
 })
 export class DashboardComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
+  users: User[];
 
   viewDate: Date = new Date();
 
@@ -67,10 +70,71 @@ export class DashboardComponent implements OnInit {
     private appointmentService: AppointmentService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
-    this.loadAppointments();
+    // this.loadAppointments();
+    this.loadUsers();
+  }
+
+  loadUsers() {
+    this.userService.getUsers().subscribe((results) => {
+      this.users = [];
+      results.forEach(result => {
+        const u: User = {
+          id : result._id,
+          name: result.fullName,
+          color: colors.yellow,
+        };
+        this.users.push(u);
+      });
+      this.events = [];
+      this.appointmentService.getAppointments().subscribe((appointments) => {
+        appointments.forEach(result => {
+          if (result.operator) {
+            const startDate = new Date(result.date);
+            const endDate = new Date(result.date);
+            const [startHours, startMinutes] = result.startTime.split(':');
+            const [endHours, endMinutes] = result.endTime.split(':');
+            startDate.setHours(startHours);
+            startDate.setMinutes(startMinutes);
+            endDate.setHours(endHours);
+            endDate.setMinutes(endMinutes);
+            const operator = this.users.filter(u => u.id === result.operator);
+            const e = {
+              title: result.name,
+              start: startDate,
+              end: endDate,
+              color: colors.red,
+              meta: {
+                user: operator[0],
+              },
+              draggable: true,
+              allDay: false,
+            } as CalendarEvent;
+            this.events.push(e);
+          }
+        });
+      });
+      this.cdr.detectChanges();
+    });
+  }
+
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd,
+  }: CalendarEventTimesChangedEvent): void {
+    event.start = newStart;
+    event.end = newEnd;
+    this.events = [...this.events];
+  }
+
+  userChanged({ event, newUser }) {
+    event.color = newUser.color;
+    event.meta.user = newUser;
+    this.events = [...this.events];
   }
 
   private loadAppointments() {
@@ -159,6 +223,13 @@ export class DashboardComponent implements OnInit {
 
   eventClicked({ event }: { event: CalendarEvent }): void {
     console.log('Event clicked', event);
+    this.openDialog('Add', event);
+  }
+
+  onHourSegmentClick(args) {
+    const event = {
+      start: args.date,
+    };
     this.openDialog('Add', event);
   }
 
