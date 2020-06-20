@@ -116,6 +116,7 @@ export class DashboardComponent implements OnInit {
             this.events.push(e);
           }
         });
+        this.refreshEvent.next();
       });
       this.cdr.detectChanges();
     });
@@ -229,6 +230,7 @@ export class DashboardComponent implements OnInit {
   onHourSegmentClick(args) {
     const event = {
       start: args.date,
+      user: args.sourceEvent.user,
     };
     this.openDialog('Add', event);
   }
@@ -253,6 +255,9 @@ export class DashboardComponent implements OnInit {
         description: '',
         operator: '',
       };
+      if (obj.user) {
+        emptyAppointment.operator = obj.user.id;
+      }
       obj = emptyAppointment;
     }
     obj.action = action;
@@ -277,7 +282,7 @@ export class DashboardComponent implements OnInit {
     this.appointmentService.createAppointment(rowObj).subscribe(
       (createdCompany) => {
         console.log(createdCompany);
-        this.loadAppointments();
+        this.loadUsers();
       },
       (err) => {
         console.log(err);

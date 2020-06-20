@@ -113,10 +113,11 @@ export class DayViewSchedulerComponent extends CalendarWeekViewComponent
     return Math.floor(eventRowContainer.offsetWidth / this.users.length);
   }
 
-  onHourSegmentClick($event, segment) {
-              this.hourSegmentClicked.emit({
+  onHourSegmentClick($event, segment, index) {
+    $event.user = this.users[index];
+    this.hourSegmentClicked.emit({
                 date: segment.date,
-                sourceEvent: $event
+                sourceEvent: $event,
               });
 
   }
