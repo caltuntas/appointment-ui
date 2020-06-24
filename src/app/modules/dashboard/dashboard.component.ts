@@ -74,7 +74,6 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.loadAppointments();
     this.loadUsers();
   }
 
@@ -109,6 +108,9 @@ export class DashboardComponent implements OnInit {
               color: colors.red,
               meta: {
                 user: operator[0],
+                description: result.description,
+                phone: result.phone,
+                _id: result._id,
               },
               draggable: true,
               allDay: false,
@@ -136,30 +138,6 @@ export class DashboardComponent implements OnInit {
     event.color = newUser.color;
     event.meta.user = newUser;
     this.events = [...this.events];
-  }
-
-  private loadAppointments() {
-    this.events = [];
-    this.appointmentService.getAppointments().subscribe((results) => {
-      results.forEach(result => {
-        const startDate = new Date(result.date);
-        const endDate = new Date(result.date);
-        const [startHours, startMinutes] = result.startTime.split(':');
-        const [endHours, endMinutes] = result.endTime.split(':');
-        startDate.setHours(startHours);
-        startDate.setMinutes(startMinutes);
-        endDate.setHours(endHours);
-        endDate.setMinutes(endMinutes);
-        const e = {
-          title: result.name,
-          start: startDate,
-          end: endDate,
-        } as CalendarEvent;
-        this.events.push(e);
-      });
-      this.refreshEvent.next();
-    });
-    console.log(this.events);
   }
 
   startDragToCreate(
@@ -230,7 +208,9 @@ export class DashboardComponent implements OnInit {
   onHourSegmentClick(args) {
     const event = {
       start: args.date,
-      user: args.sourceEvent.user,
+      meta: {
+        user: args.sourceEvent.user,
+      },
     };
     this.openDialog('Add', event);
   }
@@ -255,12 +235,28 @@ export class DashboardComponent implements OnInit {
         description: '',
         operator: '',
       };
-      if (obj.user) {
-        emptyAppointment.operator = obj.user.id;
+      if (obj.meta) {
+        const meta = obj.meta;
+        if (meta.user) {
+          emptyAppointment.operator = meta.user.id;
+        }
+        if (meta.phone) {
+          emptyAppointment.phone = meta.phone;
+        }
+        if (meta.description) {
+          emptyAppointment.description = meta.description;
+        }
+        if (meta._id) {
+          emptyAppointment._id = meta._id;
+        }
       }
       obj = emptyAppointment;
     }
-    obj.action = action;
+    if (obj._id) {
+      obj.action = 'Update';
+    } else {
+      obj.action = 'Add';
+    }
     obj.component = 'CompanyFormComponent';
     obj.instance = 'appointment';
     const dialogRef = this.dialog.open(DialogBoxComponent, {
@@ -272,6 +268,8 @@ export class DashboardComponent implements OnInit {
       if (result) {
         if (result.event === 'Add') {
           this.addRowData(result.data);
+        } else if (result.event === 'Update') {
+          this.updateRowData(result.data);
         }
       }
     });
@@ -283,6 +281,17 @@ export class DashboardComponent implements OnInit {
       (createdCompany) => {
         console.log(createdCompany);
         this.loadUsers();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  updateRowData(rowObj) {
+    this.appointmentService.updateAppointment(rowObj).subscribe(
+      (data) => {
+        console.log(data);
       },
       (err) => {
         console.log(err);
