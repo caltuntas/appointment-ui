@@ -47,7 +47,21 @@ const colors: any = {
     primary: '#e3bc08',
     secondary: '#FDF1BA',
   },
+  lime: {
+    primary: '#00FF00',
+    secondary: '#00FF00',
+  },
+  magenta: {
+    primary: '#FF00FF',
+    secondary: '#FF00FF',
+  },
+  gray: {
+    primary: '#808080',
+    secondary: '#808080',
+  }
 };
+const colorList = [colors.red, colors.blue, colors.yellow, colors.lime, colors.magenta];
+
 
 @Component({
   selector: 'app-dashboard',
@@ -80,13 +94,16 @@ export class DashboardComponent implements OnInit {
   loadUsers() {
     this.userService.getUsers().subscribe((results) => {
       this.users = [];
-      results.forEach(result => {
+      for (let index = 0; index < results.length; index++) {
+        const result = results[index];
         const u: User = {
           id : result._id,
           name: result.fullName,
-          color: colors.yellow,
+          color: colorList[index],
         };
         this.users.push(u);
+      }
+      results.forEach(result => {
       });
       this.events = [];
       this.appointmentService.getAppointments().subscribe((appointments) => {
@@ -101,11 +118,15 @@ export class DashboardComponent implements OnInit {
             endDate.setHours(endHours);
             endDate.setMinutes(endMinutes);
             const operator = this.users.filter(u => u.id === result.operator);
+            let c = colors.gray;
+            if (operator && operator[0]) {
+              c = operator[0].color;
+            }
             const e = {
               title: result.name,
               start: startDate,
               end: endDate,
-              color: colors.red,
+              color: c,
               meta: {
                 user: operator[0],
                 description: result.description,
