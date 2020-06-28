@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
   users: User[];
 
   viewDate: Date = new Date();
-
+  excludeDays: number[] = [0];
   events: CalendarEvent[] = [];
   refreshEvent: Subject<any> = new Subject();
   dragToCreateActive = false;

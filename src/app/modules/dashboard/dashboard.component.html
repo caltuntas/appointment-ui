@@ -41,6 +41,7 @@
     [events]="events"
     [refresh]="refreshEvent"
     (dayClicked)="changeDay($event.day.date)"
+    [excludeDays]="excludeDays"
   >
   </mwl-calendar-month-view>
   <mwl-calendar-week-view
@@ -55,6 +56,7 @@
     [dayStartMinute]="'0'"
     [dayEndHour]="'20'"
     [dayEndMinute]="'0'"
+    [excludeDays]="excludeDays"
   >
   </mwl-calendar-week-view>
   <div *ngSwitchCase="'day'">
@@ -67,6 +69,7 @@
       (userChanged)="userChanged($event)"
       (hourSegmentClicked)="onHourSegmentClick($event)"
       (eventClicked)="eventClicked($event)"
+      [excludeDays]="excludeDays"
     >
     </mwl-day-view-scheduler>
   </div>
