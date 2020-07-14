@@ -140,8 +140,8 @@ export class DashboardComponent implements OnInit {
           }
         });
         this.refreshEvent.next();
+        this.cdr.detectChanges();
       });
-      this.cdr.detectChanges();
     });
   }
 
