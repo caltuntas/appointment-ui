@@ -313,6 +313,7 @@ export class DashboardComponent implements OnInit {
     this.appointmentService.updateAppointment(rowObj).subscribe(
       (data) => {
         console.log(data);
+        this.loadUsers();
       },
       (err) => {
         console.log(err);
